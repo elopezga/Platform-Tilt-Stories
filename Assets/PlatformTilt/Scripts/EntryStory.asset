@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subStories:
   - {fileID: 11400000, guid: f23194176e2bd8340b5015d78c607fc9, type: 2}
+  - {fileID: 11400000, guid: bc41207915998e349af088c176b55dbb, type: 2}

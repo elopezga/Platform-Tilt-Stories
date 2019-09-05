@@ -10,7 +10,7 @@ public class PlatformTiltService : MonoBehaviour
     [SerializeField]
     private float TiltAngleMax = 15f;
 
-    private Vector2 _joystickLeft = Vector2.zero;
+    //private Vector2 _joystickLeft = Vector2.zero;
 
     void Start()
     {
@@ -27,10 +27,13 @@ public class PlatformTiltService : MonoBehaviour
                     * Quaternion.AngleAxis(Joystick2RotationAngle(_.Joystick.y), projectedRight);
             }); */
         
-        _joystickLeft = story.Get<XBox360ControllerStory>().JoystickLeft;
+        Vector2 _joystickLeft = story.Get<XBox360ControllerStory>().JoystickLeft;
+        Vector3 _cameraForward = story.Get<GameplayCameraStory>().CameraForward;
+        Vector3 _cameraRight = story.Get<GameplayCameraStory>().CameraRight;
+        
 
-        Vector3 projectedForward = Vector3.ProjectOnPlane(Vector3.forward, Vector3.up); // Fake for now
-        Vector3 projectedRight = Vector3.ProjectOnPlane(Vector3.right, Vector3.up); // Fake for now
+        Vector3 projectedForward = Vector3.ProjectOnPlane(_cameraForward, Vector3.up); // Fake for now
+        Vector3 projectedRight = Vector3.ProjectOnPlane(_cameraRight, Vector3.up); // Fake for now
 
         transform.rotation = Quaternion.AngleAxis(Joystick2RotationAngle(_joystickLeft.x), -1f * projectedForward)
             * Quaternion.AngleAxis(Joystick2RotationAngle(_joystickLeft.y), projectedRight); 
